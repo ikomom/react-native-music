@@ -40,6 +40,12 @@ target 'react_native_music' do
 
   pod 'RNSpringScrollView', :path => '../node_modules/react-native-spring-scrollview'
 
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
+  pod 'RNScreens', :path => '../node_modules/react-native-screens'
+
   target 'react_native_musicTests' do
     inherit! :search_paths
     # Pods for testing
