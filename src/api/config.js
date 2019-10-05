@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const baseUrl = '';
+export const baseUrl = 'http://122.51.15.135:8084'; // #gitignore
 
 // axios.default.withCredentials = true;
 
