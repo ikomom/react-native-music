@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+export const baseUrl = '';
 
 // axios.default.withCredentials = true;
 
