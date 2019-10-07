@@ -1,4 +1,5 @@
 import React from 'react';
+import {Text, View} from 'react-native';
 import {
   createNavigationReducer,
   createReduxContainer,
@@ -23,14 +24,26 @@ const AppWithNavigationState = connect(mapStateToProps)(
 const navReducer = createNavigationReducer(AppNavigator);
 const store = getStore(navReducer);
 
+const isHermes = () =>
+  global.HermesInternal !== null && global.HermesInternal !== undefined;
+
 function App(props) {
   return (
     <Provider store={store}>
-      <AppWithNavigationState />
+      <AppWithNavigationState
+        onNavigationStateChange={(prevState, newState, action) => {
+          console.log('onNavigationStateChange', prevState, newState, action);
+        }}
+      />
+      {isHermes ? (
+        // eslint-disable-next-line react-native/no-inline-styles
+        <View style={{backgroundColor: '#0ebb58'}}>
+          <Text style={{color: '#fff'}}>engine Hermes</Text>
+        </View>
+      ) : null}
     </Provider>
   );
 }
-
 
 // export default createAppContainer(AppNavigator);
 export default App;

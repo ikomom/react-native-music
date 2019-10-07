@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "android-release": "react-native run-android  --variant release",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "fix": "node ./scripts/react-scrollview-fix.js",
@@ -24,6 +25,7 @@
     "react-native-splash-screen": "^3.2.0",
     "react-native-spring-scrollview": "^2.0.22",
     "react-navigation": "^4.0.10",
+    "react-navigation-drawer": "^2.2.2",
     "react-navigation-redux-helpers": "^4.0.0",
     "react-navigation-stack": "^1.9.3",
     "react-redux": "^7.1.1",

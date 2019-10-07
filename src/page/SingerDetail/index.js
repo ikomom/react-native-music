@@ -18,6 +18,13 @@ const SingerDetail = props => {
 
     // action: NavigationActions.navigate({ routeName: 'SingerDetail' }),
   });
+  const navigateSub = NavigationActions.navigate({
+    routeName: 'T1',
+
+    params: {},
+
+    action: NavigationActions.navigate({ routeName: 'H3' }),
+  });
 
   return (
     <>
@@ -31,9 +38,9 @@ const SingerDetail = props => {
         }}
       />
       <Button
-        title={'dismiss'}
+        title={'T1子页面'}
         onPress={async () => {
-          props.navigation.dispatch(navigateAction);
+          props.navigation.dispatch(navigateSub);
         }}
       />
     </>

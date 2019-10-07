@@ -18,12 +18,16 @@ const navigationMiddleware = createReactNavigationReduxMiddleware(
 
 const middlewares = [navigationMiddleware, thunk];
 
-if (!__DEV__) {
+if (__DEV__) {
   // 增加打印中间件
   const createLogger = require('redux-logger').createLogger;
-  const loggerOp = createLogger({// todo  (getState: Function, action: Object) => Boolean
-    // predicate: (getState, action) =>
-    //   !(action.type && action.type.startsWith('Navigation')),
+  const loggerOp = createLogger({
+    predicate: (getState, action) => {
+      // 过滤路由完成跳转属性
+      return true || !(
+        action.type && action.type.startsWith('Navigation/COMPLETE_TRANSITION')
+      );
+    },
   });
   middlewares.push(loggerOp);
 }

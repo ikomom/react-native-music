@@ -5,26 +5,31 @@ import {NavBar} from '../../components';
 import NavigationServer from '../../utils/NavigationServer';
 
 class Home extends PureComponent {
-  static navigationOptions = ({navigation, navigationOptions}) => {
-    console.log('navigation', navigationOptions, navigation);
-    return {
-      header: <NavBar isTopNavigator={true} title={'xxx'} />,
-    };
-  };
-
   constructor(props) {
     super(props);
     NavigationServer.setNavigationRef(props.navigation);
   }
 
-
   render() {
     return (
       <>
+        <NavBar title={'Home'} isTopNavigator={true} />
         <Button
           title={'第二页面'}
           onPress={() => {
             this.props.navigation.navigate('SingerDetail');
+          }}
+        />
+        <Button
+          title={'打开抽屉'}
+          onPress={() => {
+            this.props.navigation.openDrawer();
+          }}
+        />
+        <Button
+          title={'切换抽屉状态'}
+          onPress={() => {
+            this.props.navigation.toggleDrawer();
           }}
         />
         <Text>Hello Home</Text>
