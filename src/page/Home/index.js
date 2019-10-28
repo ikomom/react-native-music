@@ -5,6 +5,8 @@ import {
   ActivityIndicator,
   TouchableWithoutFeedback,
   View,
+  StyleSheet,
+  FlatList,
 } from 'react-native';
 import {Carousel, Button} from 'teaset';
 import {NavBar} from '../../components';
@@ -13,8 +15,7 @@ import * as actionTypes from './store/actionCreators';
 import {connect} from 'react-redux';
 import {screenWidth} from '../../utils/Constance';
 import Image from '../../components/ImageWithPlaceholder';
-import {SpringScrollView, NormalHeader} from 'react-native-spring-scrollview';
-import Video from 'react-native-video';
+import RecyclerList from '../../components/RecyclerList';
 
 class Home extends PureComponent {
   constructor(props) {
@@ -73,51 +74,32 @@ class Home extends PureComponent {
     );
   }
 
-  _renderRecommend = recommendList => {
-    const width = screenWidth / 3 - 10;
-    return (
-      <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-        {recommendList.map(recomment => {
-          return (
-            <View key={recomment.id} style={{height: 200, width, margin: 5}}>
-              <Image
-                source={{uri: recomment.picUrl + `?param=${width}x${width}`}}
-                style={{height: width, width}}
-              />
-              <Text>{recomment.name}</Text>
-            </View>
-          );
-        })}
-      </View>
-    );
-  };
-
   render() {
     const {bannerList, recommendList} = this.props;
-
     return (
       <>
         <NavBar title={'Home'} isTopNavigator={true} />
-        <SpringScrollView>
-          {this._renderBanner(bannerList.toJS())}
-          {/*<Video*/}
-          {/*  source={{*/}
-          {/*    uri:*/}
-          {/*      'http://m7.music.126.net/20191020232006/603ee08c7246e2ed40722c2e0ad6f326/ymusic/b1c4/b5de/74d0/9158ae4873e10b743790320db9ef9b29.mp3',*/}
-          {/*  }}*/}
-          {/*/>*/}
-          {this._renderRecommend(recommendList.toJS())}
-          <Button
-            title={'第二页面'}
-            onPress={() => {
-              NavigationServer.navigate('SingerDetail');
-            }}
-          />
-        </SpringScrollView>
+        {/*<RecommendList*/}
+        {/*  ListHeaderComponent={this._renderBanner(bannerList.toJS())}*/}
+        {/*  data={recommendList.toJS()}*/}
+        {/*/>*/}
+        <RecyclerList ListHeaderComponent={this._renderBanner(bannerList.toJS())} data={recommendList.toJS()} />
+        <Button
+          title={'第二页面'}
+          onPress={() => {
+            NavigationServer.navigate('SingerDetail');
+          }}
+        />
       </>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 const mapStateToProps = state => {
   console.log(state);
